@@ -4,7 +4,10 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
-const usersRouter = require("./routes/users");
+const usersRouter = require("./src/routes/users");
+const postsRouter = require("./src/routes/posts");
+const commentsRouter = require("./src/routes/comments");
+const subredditsRouter = require("./src/routes/subreddits");
 
 const app = express();
 
@@ -19,13 +22,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/users", usersRouter);
+app.use("/posts", postsRouter);
+app.use("/comments", commentsRouter);
+app.use("/subreddits", subredditsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// error handler
+// error handle
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;

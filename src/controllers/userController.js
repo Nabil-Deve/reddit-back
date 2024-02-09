@@ -19,7 +19,10 @@ exports.login = async (req, res) => {
 
     const validate = await bcrypt.compare(password, user.password);
     if (user && validate) {
-      const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+      const token = jwt.sign(
+        { email: user.email, _id: user._id },
+        process.env.JWT_SECRET
+      );
       res.json({ token });
     } else {
       res.status(401).json({ error: " Vos identifiants sont invalides" });

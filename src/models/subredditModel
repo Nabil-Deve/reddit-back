@@ -1,0 +1,10 @@
+const { Schema, model } = require("mongoose");
+
+const subredditSchema = new Schema({
+  name: String,
+  description: String,
+  posts: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  creators: [{ type: Schema.Types.ObjectId, ref: "Post" }],
+});
+
+module.exports = model("Subreddit", subredditSchema);

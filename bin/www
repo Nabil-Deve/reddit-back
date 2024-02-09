@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 var app = require("../app");
-var model = require("../models/connect");
+var model = require("../src/models/connect");
 
 app.set("port", process.env.PORT || 3100);
 
